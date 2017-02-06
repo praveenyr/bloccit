@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :advertisements
+
   # get 'posts/index'
 
   # get 'posts/show'
