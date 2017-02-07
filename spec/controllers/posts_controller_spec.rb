@@ -17,26 +17,23 @@ RSpec.describe PostsController, type: :controller do
   end
     
     describe "GET show" do
-    
       it "returns http success" do
-        get :show,{id: my_post.id}
+        get :show, {id: my_post.id}
         expect(response).to have_http_status(:success)
       end
       
       it "renders the show template" do
-        get :show,{id: my_post.id}
+        get :show, {id: my_post.id}
         expect(response).to render_template :show
       end
       
       it "assigns my_post to @post" do
-        get :show,{id: my_post.id}
+        get :show, {id: my_post.id}
         expect(assigns(:post)).to eq(my_post)
       end
-    
     end
     
   describe "GET edit" do
-    
     it "returns http success" do
       get :edit, {id:my_post.id}
       expect(response).to have_http_status(:success)
@@ -54,13 +51,10 @@ RSpec.describe PostsController, type: :controller do
       expect(post_instance.id).to eq(my_post.id)
       expect(post_instance.title).to eq(my_post.title)
       expect(post_instance.body).to eq(my_post.body)
-      
     end
-  
   end
   
   describe "GET update" do
-    
     it "updates post to expected attributes" do
       new_title = RandomData.random_sentence
       new_body = RandomData.random_paragraph
@@ -72,7 +66,6 @@ RSpec.describe PostsController, type: :controller do
       expect(updated_post.id).to eq(my_post.id)
       expect(updated_post.title).to eq(new_title)
       expect(updated_post.body).to eq(new_body)
-      
     end
     
     it "redirects to the updated post" do
@@ -85,7 +78,6 @@ RSpec.describe PostsController, type: :controller do
       
       expect(response).to redirect_to(my_post)
     end
-    
   end
     
     describe "GET new" do
@@ -106,33 +98,31 @@ RSpec.describe PostsController, type: :controller do
     end
     
     describe "POST create" do
-      
       it "increases the number of posts by 1" do
-        expect{post :create,post: {title: RandomData.random_sentence ,body: RandomData.random_paragraph}}.to change(Post,:count).by(1)
+        expect{post :create, post: {title: RandomData.random_sentence ,body: RandomData.random_paragraph}}.to change(Post,:count).by(1)
       end  
       
       it "assings new post to @post" do
-        post :create,post: {title: RandomData.random_sentence ,body: RandomData.random_paragraph}
+        post :create, post: {title: RandomData.random_sentence ,body: RandomData.random_paragraph}
         expect(assigns(:post)).to eq Post.last
       end
     
       it "redirects to the new post" do
-        post :create,post: {title: RandomData.random_sentence ,body: RandomData.random_paragraph}
+        post :create, post: {title: RandomData.random_sentence ,body: RandomData.random_paragraph}
         expect(response).to redirect_to Post.last
       end
-      
     end
     
     describe "DELETE destroy" do
       it "deletes post" do
-        delete :destroy,{id:my_post.id}
+        delete :destroy, {id:my_post.id}
         count = Post.where({id:my_post.id}).size
         
         expect(count).to eq 0
       end
       
       it "redirects to index" do
-        delete :destroy,{id:my_post.id}
+        delete :destroy, {id:my_post.id}
         
         expect(response).to redirect_to posts_path
       end
