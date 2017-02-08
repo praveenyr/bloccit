@@ -76,7 +76,7 @@ RSpec.describe PostsController, type: :controller do
       
       updated_post = assigns(:post)
       
-      expect(response).to redirect_to(my_post)
+      expect(response).to redirect_to(updated_post)
     end
   end
     
