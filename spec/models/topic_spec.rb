@@ -6,16 +6,13 @@ RSpec.describe Topic, type: :model do
   let(:public){ true }
   let(:topic){ Topic.create!(name: name,description: description)}
   
-   it { is_expected.to have_many(:posts) }
-   it { is_expected.to have_many(:sponsoredposts) }
-  
   describe "attributes" do
-    it "name,description and public attributes" do
+     it "name,description and public attributes" do
         expect(topic).to have_attributes(name: name, description: description, public: public)
-    end
+     end
     
-    it "is public by default" do
+     it "is public by default" do
         expect(topic.public).to be(true)
-    end
+     end
   end    
 end
