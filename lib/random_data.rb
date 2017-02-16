@@ -27,4 +27,7 @@ module RandomData
         [true,false].sample
     end
     
+    def self.random_integer
+        rand(0..1000)
+    end    
 end
