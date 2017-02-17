@@ -1,19 +1,19 @@
-class SponsoredpostsController < ApplicationController
-    
+class SponsoredPostsController < ApplicationController
+ 
   def show
-    @sponsoredpost = Sponsoredpost.find(params[:id])
+    @sponsoredpost = SponsoredPost.find(params[:id])
   end
   
   def new
     @topic = Topic.find(params[:topic_id])
-    @sponsoredpost = Sponsoredpost.new
+    @sponsoredpost = SponsoredPost.new
   end
   
   def create
-    @sponsoredpost = Sponsoredpost.new
-    @sponsoredpost.title = params[:sponsoredpost][:title]
-    @sponsoredpost.body = params[:sponsoredpost][:body]
-    @sponsoredpost.price = params[:sponsoredpost][:price]
+    @sponsoredpost = SponsoredPost.new
+    @sponsoredpost.title = params[:sponsored_post][:title]
+    @sponsoredpost.body = params[:sponsored_post][:body]
+    @sponsoredpost.price = params[:sponsored_post][:price]
     @topic = Topic.find(params[:topic_id])
     
     @sponsoredpost.topic = @topic
@@ -28,15 +28,15 @@ class SponsoredpostsController < ApplicationController
   end
   
   def edit
-    @sponsoredpost = Sponsoredpost.find(params[:id])
+    @sponsoredpost = SponsoredPost.find(params[:id])
   end
   
   def update
-    @sponsoredpost = Sponsoredpost.find(params[:id])
+    @sponsoredpost = SponsoredPost.find(params[:id])
     
-    @sponsoredpost.title = params[:sponsoredpost][:title]
-    @sponsoredpost.body = params[:sponsoredpost][:body] 
-    @sponsoredpost.price = params[:sponsoredpost][:price] 
+    @sponsoredpost.title = params[:sponsored_post][:title]
+    @sponsoredpost.body = params[:sponsored_post][:body] 
+    @sponsoredpost.price = params[:sponsored_post][:price] 
     
     if @sponsoredpost.save
       flash[notice] = "Sponsored post was saved"
@@ -48,7 +48,7 @@ class SponsoredpostsController < ApplicationController
   end
   
   def destroy
-    @sponsoredpost = Sponsoredpost.find(params[:id])
+    @sponsoredpost = SponsoredPost.find(params[:id])
     
     if @sponsoredpost.destroy
       flash[:notice] = "\"#{@sponsoredpost.title}\" was deleted successfully. "
@@ -58,6 +58,5 @@ class SponsoredpostsController < ApplicationController
       render :show
     end
   end
-  
   
 end
