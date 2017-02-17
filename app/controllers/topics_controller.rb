@@ -1,17 +1,16 @@
 class TopicsController < ApplicationController
-    
+       
    def index
-      @topics = Topic.all
+     @topics = Topic.all
    end
     
    def show
-      @topic = Topic.find(params[:id])
+     @topic = Topic.find(params[:id])
    end
     
    def new
-      @topic = Topic.new
+     @topic = Topic.new
    end
-    
      
    def create
      @topic = Topic.new
@@ -28,7 +27,7 @@ class TopicsController < ApplicationController
    end
    
    def edit
-       @topic = Topic.find(params[:id])
+     @topic = Topic.find(params[:id])
    end
    
    def update
@@ -58,5 +57,4 @@ class TopicsController < ApplicationController
        render :show
      end
    end
-   
 end

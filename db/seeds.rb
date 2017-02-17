@@ -9,36 +9,37 @@
 require 'random_data'
 
 15.times do
-    Topic.create!(
-        name: RandomData.random_sentence,
-        description: RandomData.random_paragraph
-        )
+  Topic.create!(
+    name: RandomData.random_sentence,
+    description: RandomData.random_paragraph
+  )
 end
+
 topics = Topic.all
 
 50. times do
-    Post.create!(
-        topic: topics.sample,
-        title: RandomData.random_sentence,
-        body: RandomData.random_paragraph
-    )
+  Post.create!(
+    topic: topics.sample,
+    title: RandomData.random_sentence,
+    body: RandomData.random_paragraph
+  )
 end
 
 posts = Post.all
 
 100. times do
-Comment.create!(
+  Comment.create!(
     post: posts.sample,
     body: RandomData.random_paragraph
-)
+  )
 end
 
 20.times do
-Question.create!(
+  Question.create!(
     title: RandomData.random_sentence,
     body: RandomData.random_paragraph,
     resolved: [true, false].sample
-    )
+  )
 end
     
 puts "Seed finished"
