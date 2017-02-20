@@ -9,23 +9,20 @@
 require 'random_data'
 
 15.times do
-    Topic.create!(
-        name: RandomData.random_sentence,
-        description: RandomData.random_paragraph
-        )
+  Topic.create!(
+    name: RandomData.random_sentence,
+    description: RandomData.random_paragraph
+  )
 end
 topics = Topic.all
-
-50. times do
-    Post.create!(
-        topic: topics.sample,
-        title: RandomData.random_sentence,
-        body: RandomData.random_paragraph
-    )
+50.times do
+  Post.create!(
+    topic: topics.sample,
+    title: RandomData.random_sentence,
+    body: RandomData.random_paragraph
+  )
 end
-
 posts = Post.all
-
 50. times do
     Sponsoredpost.create!(
         topic: topics.sample,
@@ -34,20 +31,18 @@ posts = Post.all
         price: RandomData.random_integer
     )
 end
-
-100. times do
-Comment.create!(
+100.times do
+  Comment.create!(
     post: posts.sample,
     body: RandomData.random_paragraph
-)
+  )
 end
-
 20.times do
-Question.create!(
+  Question.create!(
     title: RandomData.random_sentence,
     body: RandomData.random_paragraph,
     resolved: [true, false].sample
-    )
+  )
 end
     
 puts "Seed finished"
