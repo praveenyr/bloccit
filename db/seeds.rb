@@ -14,26 +14,21 @@ require 'random_data'
     description: RandomData.random_paragraph
   )
 end
-
 topics = Topic.all
-
-50. times do
+50.times do
   Post.create!(
     topic: topics.sample,
     title: RandomData.random_sentence,
     body: RandomData.random_paragraph
   )
 end
-
 posts = Post.all
-
-100. times do
+100.times do
   Comment.create!(
     post: posts.sample,
     body: RandomData.random_paragraph
   )
 end
-
 20.times do
   Question.create!(
     title: RandomData.random_sentence,
