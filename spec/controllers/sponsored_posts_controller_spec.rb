@@ -19,7 +19,7 @@ RSpec.describe SponsoredPostsController, type: :controller do
       
     it "assigns my_sponsoredpost to @sponsoredpost" do
       get :show, topic_id: my_topic.id, id: my_sponsoredpost.id
-      expect(assigns(:sponsoredpost)).to eq(my_sponsoredpost)
+      expect(assigns(:sponsored_post)).to eq(my_sponsoredpost)
     end
   end
     
@@ -36,7 +36,7 @@ RSpec.describe SponsoredPostsController, type: :controller do
     
     it "assigns sponsoredpost to be updated to @sponsoredpost" do
       get :edit, topic_id: my_topic.id, id:my_sponsoredpost.id
-      sponsoredpost_instance = assigns(:sponsoredpost)
+      sponsoredpost_instance = assigns(:sponsored_post)
       
       expect(sponsoredpost_instance.id).to eq(my_sponsoredpost.id)
       expect(sponsoredpost_instance.title).to eq(my_sponsoredpost.title)
@@ -53,7 +53,7 @@ RSpec.describe SponsoredPostsController, type: :controller do
       
       put :update, topic_id: my_topic.id, id: my_sponsoredpost.id, sponsored_post: {title: new_title, body: new_body, price: new_price}
       
-      updated_sponsoredpost = assigns(:sponsoredpost)
+      updated_sponsoredpost = assigns(:sponsored_post)
       
       expect(updated_sponsoredpost.id).to eq(my_sponsoredpost.id)
       expect(updated_sponsoredpost.title).to eq(new_title)
@@ -66,7 +66,7 @@ RSpec.describe SponsoredPostsController, type: :controller do
       new_body = RandomData.random_paragraph
       new_price = RandomData.random_integer
       
-      put :update, topic_id: my_topic.id, id: my_sponsoredpost.id, sponsoredpost: {title: new_title, body: new_body, price: new_price}
+      put :update, topic_id: my_topic.id, id: my_sponsoredpost.id, sponsored_post: {title: new_title, body: new_body, price: new_price}
 
       expect(response).to redirect_to [my_topic, my_sponsoredpost]
     end
@@ -85,7 +85,7 @@ RSpec.describe SponsoredPostsController, type: :controller do
       
     it "instantiates @sponsoredpost" do
       get :new, topic_id: my_topic.id
-      expect(assigns(:sponsoredpost)).not_to be_nil
+      expect(assigns(:sponsored_post)).not_to be_nil
     end
   end
     
@@ -96,7 +96,7 @@ RSpec.describe SponsoredPostsController, type: :controller do
       
     it "assings new sponsoredpost to @sponsoredpost" do
       post :create, topic_id: my_topic.id, sponsored_post:{title: RandomData.random_sentence, body: RandomData.random_paragraph, price: RandomData.random_integer }
-      expect(assigns(:sponsoredpost)).to eq SponsoredPost.last
+      expect(assigns(:sponsored_post)).to eq SponsoredPost.last
     end
     
     it "redirects to the new post" do
