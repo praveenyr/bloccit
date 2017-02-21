@@ -14,8 +14,14 @@ require 'random_data'
     description: RandomData.random_paragraph
   )
 end
+
 topics = Topic.all
+<<<<<<< HEAD
 50.times do
+=======
+
+50. times do
+>>>>>>> assignment-22-rails-topicsandposts
   Post.create!(
     topic: topics.sample,
     title: RandomData.random_sentence,
@@ -24,14 +30,19 @@ topics = Topic.all
 end
 posts = Post.all
 50. times do
-    Sponsoredpost.create!(
-        topic: topics.sample,
-        title: RandomData.random_sentence,
-        body: RandomData.random_paragraph,
-        price: RandomData.random_integer
-    )
+  SponsoredPost.create!(
+    topic: topics.sample,
+    title: RandomData.random_sentence,
+    body: RandomData.random_paragraph,
+    price: RandomData.random_integer
+  )
 end
+<<<<<<< HEAD
 100.times do
+=======
+
+100. times do
+>>>>>>> assignment-22-rails-topicsandposts
   Comment.create!(
     post: posts.sample,
     body: RandomData.random_paragraph
@@ -48,6 +59,6 @@ end
 puts "Seed finished"
 puts "#{Topic.count} topics created"
 puts "#{Post.count} posts created"
-puts "#{Sponsoredpost.count} sponsored posts created"
+puts "#{SponsoredPost.count} sponsored posts created"
 puts "#{Comment.count} comments created"
 puts "#{Question.count} questions created"

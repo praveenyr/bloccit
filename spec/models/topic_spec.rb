@@ -6,6 +6,12 @@ RSpec.describe Topic, type: :model do
   let(:public){ true }
   let(:topic){ Topic.create!(name: name,description: description)}
   
+<<<<<<< HEAD
+=======
+  it { is_expected.to have_many(:posts) }
+  it { is_expected.to have_many(:sponsoredposts) }
+  
+>>>>>>> assignment-22-rails-topicsandposts
   describe "attributes" do
      it "name,description and public attributes" do
         expect(topic).to have_attributes(name: name, description: description, public: public)

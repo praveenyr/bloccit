@@ -10,7 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20170217185933) do
+=======
+ActiveRecord::Schema.define(version: 20170217052814) do
+>>>>>>> assignment-22-rails-topicsandposts
 
   create_table "advertisements", force: :cascade do |t|
     t.string   "title"
