@@ -16,19 +16,17 @@ require 'random_data'
 end
 
 topics = Topic.all
-<<<<<<< HEAD
-50.times do
-=======
 
-50. times do
->>>>>>> assignment-22-rails-topicsandposts
+50.times do
   Post.create!(
     topic: topics.sample,
     title: RandomData.random_sentence,
     body: RandomData.random_paragraph
   )
 end
+
 posts = Post.all
+
 50. times do
   SponsoredPost.create!(
     topic: topics.sample,
@@ -37,17 +35,14 @@ posts = Post.all
     price: RandomData.random_integer
   )
 end
-<<<<<<< HEAD
-100.times do
-=======
 
 100. times do
->>>>>>> assignment-22-rails-topicsandposts
   Comment.create!(
     post: posts.sample,
     body: RandomData.random_paragraph
   )
 end
+
 20.times do
   Question.create!(
     title: RandomData.random_sentence,
