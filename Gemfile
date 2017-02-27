@@ -13,6 +13,9 @@ source 'https://rubygems.org'
  group :development do
    gem 'sqlite3'
    gem 'listen'
+   gem 'binding_of_caller'
+   gem 'better_errors'
+   gem 'pry-rails'
  end
  
  group :development, :test do
