@@ -74,7 +74,19 @@ RSpec.describe Post, type: :model do
           expect(post.rank).to eq (old_rank - 1)
         end
       end
-     
-  end  
+
+      describe "after_create callback" do
+        it "triggers after_create on create" do
+          new_post = topic.posts.new( title: "Arsenal", body: "Arsenal vs Barcelona tonight!", user: user )
+          expect(new_post).to receive(:create_vote)
+          new_post.save!
+        end
    
+        it "#create_vote should create one up vote for the post" do
+          new_post = topic.posts.create!(title: "Arsenal", body: "Arsenal vs Manchester Utd tonight!", user: user)
+          expect(new_post.votes.where(value: 1).count).to eq(1)
+        end
+      end
+      
+  end  
 end
