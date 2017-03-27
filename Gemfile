@@ -22,6 +22,7 @@ source 'https://rubygems.org'
    gem 'rspec-rails', '~> 3.0'
    gem 'shoulda'
    gem 'pry-rails'
+   gem 'factory_girl_rails', '~> 4.0'
  end
  gem 'rails-controller-testing'
  
