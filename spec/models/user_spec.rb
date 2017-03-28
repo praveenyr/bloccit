@@ -108,5 +108,26 @@ RSpec.describe User, type: :model do
         expected_gravatar = "http://gravatar.com/avatar/bb6d1172212c180cfbdb7039129d7b03.png?s=48"
         expect(known_user.avatar_url(48)).to eq(expected_gravatar)
       end
+    end   
+    
+    describe "users with favorite posts" do
+       let(:my_user) { create(:user) }
+       let(:my_topic) { create(:topic) }
+       let(:my_post) { create(:post, topic: my_topic) }
+       let(:my_comment){ create(:comment, post: my_post, user: my_user) }
+       let(:my_vote) { create(:vote, value: 1, post: my_post, user: my_user) }
+      # topic = Topic.create!(name: RandomData.random_sentence, description: RandomData.random_paragraph)
+      # @post = topic.posts.create!(title: RandomData.random_sentence, body: RandomData.random_paragraph, user: user)      
+    
+      
+      it "adds the comments for each post" do
+        favorite = user.favorites.where(post: my_post).create
+        expect(favorite.post.comments.size).to eq(1)
+      end
+      
+      it "adds the votes for each post" do
+        favorite = user.favorites.where(post: my_post).create
+        expect(favorite.post.votes.size).to eq(1)
+      end
     end    
 end
