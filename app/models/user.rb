@@ -1,8 +1,8 @@
 class User < ApplicationRecord
-   has_many :posts, dependent: :destroy
-   has_many :comments, dependent: :destroy
-   has_many :votes, dependent: :destroy
-   has_many :favorites, dependent: :destroy
+  has_many :posts, dependent: :destroy
+  has_many :comments, dependent: :destroy
+  has_many :votes, dependent: :destroy
+  has_many :favorites, dependent: :destroy
  
   before_save { self.email = email.downcase if email.present? }
   before_save { self.role ||= :member }
@@ -27,6 +27,19 @@ class User < ApplicationRecord
   def avatar_url(size)
     gravatar_id = Digest::MD5::hexdigest(self.email).downcase
     "http://gravatar.com/avatar/#{gravatar_id}.png?s=#{size}"
+  end
+  
+  def has_posts?
+    self.posts.count > 0 ? true : false
+    
+  end
+  
+  def has_comments?
+    self.comments.count > 0 ? true : false
+  end
+  
+  def has_any_favorites?
+    self.favorites.count > 0 ? true : false
   end
      
 end

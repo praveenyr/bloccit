@@ -110,24 +110,60 @@ RSpec.describe User, type: :model do
       end
     end   
     
-    describe "users with favorite posts" do
-       let(:my_user) { create(:user) }
-       let(:my_topic) { create(:topic) }
-       let(:my_post) { create(:post, topic: my_topic) }
-       let(:my_comment){ create(:comment, post: my_post, user: my_user) }
-       let(:my_vote) { create(:vote, value: 1, post: my_post, user: my_user) }
-      # topic = Topic.create!(name: RandomData.random_sentence, description: RandomData.random_paragraph)
-      # @post = topic.posts.create!(title: RandomData.random_sentence, body: RandomData.random_paragraph, user: user)      
+    # describe "users with favorite posts" do
+    #   let(:my_user) { create(:user) }
+    #   let(:my_topic) { create(:topic) }
+    #   let(:my_post) { create(:post, topic: my_topic) }
+    #   let(:my_comment){ create(:comment, post: my_post, user: my_user) }
+    #   let(:my_vote) { create(:vote, value: 1, post: my_post, user: my_user) }
+    #   # topic = Topic.create!(name: RandomData.random_sentence, description: RandomData.random_paragraph)
+    #   # @post = topic.posts.create!(title: RandomData.random_sentence, body: RandomData.random_paragraph, user: user)      
     
       
-      it "adds the comments for each post" do
-        favorite = user.favorites.where(post: my_post).create
-        expect(favorite.post.comments.size).to eq(1)
-      end
+    #   it "adds the comments for each post" do
+    #     favorite = user.favorites.where(post: my_post).create
+    #     expect(favorite.post.comments.size).to eq(1)
+    #   end
       
-      it "adds the votes for each post" do
-        favorite = user.favorites.where(post: my_post).create
-        expect(favorite.post.votes.size).to eq(1)
-      end
-    end    
+    #   it "adds the votes for each post" do
+    #     favorite = user.favorites.where(post: my_post).create
+    #     expect(favorite.post.votes.size).to eq(1)
+    #   end
+    # end    
+    
+  describe ".has_posts?" do
+    it 'returns false if the user has no posts' do
+      expect(user.has_posts?).to eq(false)
+    end
+    it 'returns true if the user has created any posts' do
+      topic = Topic.create!(name: RandomData.random_sentence, description: RandomData.random_paragraph)
+      topic.posts.create!(title: RandomData.random_sentence, body: RandomData.random_paragraph, user: user)
+      expect(user.has_posts?).to eq(true)
+    end
+  end
+  
+  describe ".has_comments" do
+    it 'returns false if the user has no comments' do
+      expect(user.has_comments?).to eq(false)
+    end
+    it 'returns true if the user has created any comments' do
+      topic = Topic.create!(name: RandomData.random_sentence, description: RandomData.random_paragraph)
+      post = topic.posts.create!(title: RandomData.random_sentence, body: RandomData.random_paragraph, user: user)
+      Comment.create!(body: "Comment Body", post: post, user: user)
+      expect(user.has_comments?).to eq(true)
+    end
+  end
+  
+  describe ".has_any_favorites?" do
+    let(:topic) { create(:topic) }
+    it "returns false if the user has not favorited any post" do
+      expect(user.has_any_favorites?).to eq(false)
+    end
+    it "returns true if the user has any favorite posts" do
+      post = create(:post)
+      Favorite.create!(post: post, user: user)
+      expect(user.has_any_favorites?).to eq(true)
+    end
+  end
+  
 end
